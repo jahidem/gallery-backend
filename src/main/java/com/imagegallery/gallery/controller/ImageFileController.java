@@ -29,15 +29,15 @@ public class ImageFileController {
     return imageFileRepository.findAll();
   }
 
-  @PostMapping("/post")
   @CrossOrigin
+  @PostMapping("/post")
   public String saveImage(@RequestBody ImageFile imageFile ){
     imageFileRepository.save(imageFile);    
     return imageFile.getImageFileUUID();
   }
 
-  @DeleteMapping("/delete/{uuid}")
   @CrossOrigin
+  @DeleteMapping("/delete/{uuid}")
   public String deleteImage(
     @PathVariable("uuid") String uuid){
       imageFileRepository.delete(imageFileRepository.findByImageFileUUID(uuid).get(0));
