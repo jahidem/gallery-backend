@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,5 +34,14 @@ public class ImageFileController {
   public String saveImage(@RequestBody ImageFile imageFile ){
     imageFileRepository.save(imageFile);    
     return imageFile.getImageFileUUID();
+  }
+
+  @DeleteMapping("/delete/{uuid}")
+  @CrossOrigin
+  public String deleteImage(
+    @PathVariable("uuid") String uuid){
+      imageFileRepository.delete(imageFileRepository.findByImageFileUUID(uuid).get(0));
+      
+      return uuid;
   }
 }
