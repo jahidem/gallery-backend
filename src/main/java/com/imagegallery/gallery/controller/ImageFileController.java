@@ -38,10 +38,9 @@ public class ImageFileController {
 
   @CrossOrigin
   @DeleteMapping("/delete/{uuid}")
-  public String deleteImage(
+  public void deleteImage(
     @PathVariable("uuid") String uuid){
       imageFileRepository.delete(imageFileRepository.findByImageFileUUID(uuid).get(0));
       
-      return uuid;
   }
 }
